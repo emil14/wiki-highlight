@@ -3,17 +3,20 @@
   "name": "Wiki Highlight",
   "version": "0.0.1",
 
-  "default_locale": "en",
   "description": "A plain text description",
-  "icons": {...},
+  "icons": {
+    "128": "wiki-logo.png"
+  },
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "wiki-logo.png",
     "default_popup": "popup.html"
   },
 
   "content_scripts": [
-    "matches": ["<all_urls>"],
-    "js": ["myscript.js"]
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
   ]
 }
