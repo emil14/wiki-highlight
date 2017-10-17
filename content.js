@@ -1,12 +1,10 @@
 "use strict";
 
 window.addEventListener('click', () => {
-  const selection = window.getSelection();
-  const selectionIsEmpty = selection.anchorNode.length === 0;
+  const selectedText = window.getSelection().toString();
 
-  if (selectionIsEmpty) return;
+  if (selectionText.length === 0) return;
 
-  const selectedText = selection.toString();
   const params = {
     action: 'query',
     format: 'json',
