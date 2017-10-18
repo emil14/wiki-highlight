@@ -3,7 +3,7 @@
 window.addEventListener('click', () => {
   const selectedText = window.getSelection().toString();
 
-  if (selectionText.length === 0) return;
+  if (selectedText.length === 0) return;
 
   const params = {
     action: 'query',
