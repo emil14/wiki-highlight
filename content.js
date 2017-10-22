@@ -1,16 +1,14 @@
-
-
 function getContentFromData(resp) {
   return Object.values(resp.query.pages)[0].revisions[0]['*'];
 }
 
 function showButtonOnCoords(x, y) {
   const buttonId = 'wikiHighlightButton';
-  const findButton = () => document.getElementById(buttonId);
+  const findButton = () => window.document.getElementById(buttonId);
   const buttonExist = findButton() !== null;
   const button = buttonExist
     ? findButton()
-    : document.createElement('button');
+    : window.document.createElement('button');
 
   button.style.left = `${x}px`;
   button.style.top = `${y}px`;
@@ -25,12 +23,12 @@ function showButtonOnCoords(x, y) {
     button.style.position = 'absolute';
     button.style['z-index'] = chromeMaxZIndex;
 
-    document.body.appendChild(button);
+    window.document.body.appendChild(button);
   }
 }
 
 function hideButton() {
-  const findButton = () => document.getElementById('wikiHighlightButton');
+  const findButton = () => window.document.getElementById('wikiHighlightButton');
   const buttonExist = findButton() !== null;
 
   if (buttonExist) findButton().style.display = 'none';
@@ -41,7 +39,7 @@ function renderContent(content) {
 }
 
 function fetchData(text) {
-  const apiUrl = new URL('https://en.wikipedia.org/w/api.php');
+  const apiUrl = new window.URL('https://en.wikipedia.org/w/api.php');
   const userAgent = 'Wiki Highlight (https://github.com/emil14/wiki-highlight)';
   const searchParams = {
     action: 'query',
@@ -57,9 +55,9 @@ function fetchData(text) {
   });
 
   return new Promise((resolve, reject) => {
-    fetch(apiUrl, {
+    window.fetch(apiUrl, {
       method: 'POST',
-      headers: new Headers({ 'Api-User-Agent': userAgent }),
+      headers: new window.Headers({ 'Api-User-Agent': userAgent }),
     })
       .then(resp => resp.json())
       .then((data) => {
