@@ -17,9 +17,12 @@ function showButtonOnCoords (x, y) {
   if (button.style.display === 'none') button.style.display = 'block';
 
   if (!buttonExist) {
+    const chromeMaxZIndex = 2147483647;
+
     button.id = 'wikiHighlightButton';
     button.innerHTML = 'Show Wiki';
     button.style.position = 'absolute';
+    button.style['z-index'] = chromeMaxZIndex;
 
     document.body.appendChild(button);
   }
@@ -75,10 +78,11 @@ function handleClickEvent (event) {
     return;
   }
 
+  showButtonOnCoords(event.pageX, event.pageY);
+
   fetchData(selectedText)
     .then(data => {
-      showButtonOnCoords(event.pageX, event.pageY);
-      renderContent(getContentFromData(data));
+       renderContent(getContentFromData(data));
     });
 }
 
