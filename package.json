@@ -1,0 +1,27 @@
+{
+  "name": "wiki-highlight",
+  "version": "0.0.1",
+  "description": "",
+  "main": "popup.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emil14/wiki-highlight.git"
+  },
+  "keywords": [
+    "chrome-extension"
+  ],
+  "author": "Emil Valeev <emil.musician@gmail.com> (http://github.com/emil14/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emil14/wiki-highlight/issues"
+  },
+  "homepage": "https://github.com/emil14/wiki-highlight#readme",
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
