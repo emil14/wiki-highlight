@@ -5,7 +5,8 @@ function getContentFromData (resp) {
 }
 
 function showButtonOnCoords (x, y) {
-  const findButton = () => document.getElementById('wikiHighlightButton');
+  const buttonId = 'wikiHighlightButton';
+  const findButton = () => document.getElementById(buttonId);
   const buttonExist = findButton() !== null;
   const button = buttonExist
     ? findButton()
@@ -19,7 +20,7 @@ function showButtonOnCoords (x, y) {
   if (!buttonExist) {
     const chromeMaxZIndex = 2147483647;
 
-    button.id = 'wikiHighlightButton';
+    button.id = buttonId;
     button.innerHTML = 'Show Wiki';
     button.style.position = 'absolute';
     button.style['z-index'] = chromeMaxZIndex;
@@ -83,6 +84,9 @@ function handleClickEvent (event) {
   fetchData(selectedText)
     .then(data => {
        renderContent(getContentFromData(data));
+    })
+    .catch(err => {
+      console.log(err);
     });
 }
 
