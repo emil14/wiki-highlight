@@ -59,4 +59,4 @@ typings/
 
 # project specific
 .tern-port
-bundle.js
+./dist

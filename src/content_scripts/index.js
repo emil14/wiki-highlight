@@ -1,16 +1,18 @@
 import { button, popup } from './components';
 import { fetchData, getContentFromData } from './utils';
 
+const { chrome, getSelection, addEventListener } = window;
+
 let isExtensionEnabled = true;
 
-window.chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request) => {
   isExtensionEnabled = request;
 });
 
 function clickHandler(event) {
   if (!isExtensionEnabled) return;
 
-  const selectedText = window.getSelection().toString();
+  const selectedText = getSelection().toString();
 
   if (selectedText.length === 0) {
     button.changeVisibility(false);
@@ -31,4 +33,4 @@ function clickHandler(event) {
     });
 }
 
-window.addEventListener('click', clickHandler);
+addEventListener('click', clickHandler);

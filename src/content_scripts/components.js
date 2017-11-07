@@ -1,3 +1,5 @@
+const { document } = window;
+
 class Element {
   constructor(id) {
     this.id = id;
@@ -6,7 +8,7 @@ class Element {
   }
 
   get element() {
-    return window.document.getElementById(this.id);
+    return document.getElementById(this.id);
   }
 
   changeVisibility(isVisible) {
@@ -16,12 +18,12 @@ class Element {
 
 class Popup extends Element {
   init() {
-    const element = window.document.createElement('div');
+    const element = document.createElement('div');
 
     element.id = this.id;
     element.style.display = 'none';
 
-    window.document.body.appendChild(element);
+    document.body.appendChild(element);
   }
   renderContent(content) {
     this.element.innerHTML = content;
@@ -37,7 +39,7 @@ class Button extends Element {
   }
 
   init() {
-    const element = window.document.createElement('button');
+    const element = document.createElement('button');
     const chromeMaxZIndex = 2147483647;
 
     element.id = this.id;
@@ -49,7 +51,7 @@ class Button extends Element {
       this.clickCallback(this);
     });
 
-    window.document.body.appendChild(element);
+    document.body.appendChild(element);
   }
   setPosition(x, y) {
     this.element.style.left = `${x}px`;
