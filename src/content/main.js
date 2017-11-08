@@ -1,5 +1,5 @@
 import { button, popup } from './components';
-import { fetchData, getContentFromData } from './utils';
+import { fetchData, getContentFromData } from './api';
 
 const { chrome, getSelection, addEventListener } = window;
 
