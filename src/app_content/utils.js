@@ -1,8 +1,8 @@
-export function getContentFromData(resp) {
+function getContentFromData(resp) {
   return Object.values(resp.query.pages)[0].revisions[0]['*'];
 }
 
-export function fetchData(text) {
+function fetchData(text) {
   const apiUrl = new window.URL('https://en.wikipedia.org/w/api.php');
   const userAgent = 'Wiki Highlight (https://github.com/emil14/wiki-highlight)';
   const searchParams = {
@@ -33,3 +33,4 @@ export function fetchData(text) {
   });
 }
 
+export { getContentFromData, fetchData };

@@ -3,8 +3,6 @@ const { document } = window;
 class Element {
   constructor(id) {
     this.id = id;
-
-    this.init();
   }
 
   get element() {
@@ -17,14 +15,17 @@ class Element {
 }
 
 class Popup extends Element {
-  init() {
+  constructor(id) {
     const element = document.createElement('div');
+
+    super(id);
 
     element.id = this.id;
     element.style.display = 'none';
 
     document.body.appendChild(element);
   }
+
   renderContent(content) {
     this.element.innerHTML = content;
   }
@@ -32,15 +33,13 @@ class Popup extends Element {
 
 class Button extends Element {
   constructor(id, title, callback) {
+    const element = document.createElement('button');
+    const chromeMaxZIndex = 2147483647;
+
     super(id);
 
     this.title = title;
     this.clickCallback = callback;
-  }
-
-  init() {
-    const element = document.createElement('button');
-    const chromeMaxZIndex = 2147483647;
 
     element.id = this.id;
     element.innerHTML = this.title;
@@ -53,15 +52,18 @@ class Button extends Element {
 
     document.body.appendChild(element);
   }
+
   setPosition(x, y) {
     this.element.style.left = `${x}px`;
     this.element.style.top = `${y}px`;
   }
 }
 
-export const popup = new Popup('wikiHighlightPopup');
-export const button = new Button('wikiHighlightButton', 'show popup', (self) => {
+const popup = new Popup('wikiHighlightPopup');
+const button = new Button('wikiHighlightButton', 'show popup', (self) => {
   self.changeVisibility(false);
   popup.changeVisibility(true);
 });
+
+export { button, popup };
 
