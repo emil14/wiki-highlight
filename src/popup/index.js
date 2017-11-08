@@ -5,7 +5,7 @@ const switchButton = document.getElementById('switchButton');
 
 function toggleMode() {
   isEnabled = !isEnabled;
-  const iconPath = isEnabled ? 'wiki-logo.png' : 'wiki-logo--disabled.png';
+  const iconPath = isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png';
 
   chrome.browserAction.setIcon({ path: iconPath });
 
