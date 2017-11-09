@@ -4,7 +4,10 @@
   "description": "",
   "main": "popup.html",
   "scripts": {
-    "build": "rm -r ./dist && webpack",
+    "clear": "rm -r ./dist",
+    "build": "npm run clear && webpack",
+    "watch": "npm run clear && webpack --watch",
+    "start": "npm run watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
