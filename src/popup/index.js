@@ -18,11 +18,12 @@ function toggleMode() {
   let isEnabled = getStoragedValue();
 
   isEnabled = !isEnabled;
+
   setStoragedValue(isEnabled);
 
-  const iconPath = isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png';
-
-  chrome.browserAction.setIcon({ path: iconPath });
+  chrome.browserAction.setIcon({
+    path: isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png',
+  });
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, isEnabled);

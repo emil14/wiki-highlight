@@ -1,7 +1,12 @@
-import { button, popup } from './components';
+import { Button, Popup } from './components';
 import { fetchData, getContentFromData } from './api';
 
 const { chrome, getSelection, addEventListener } = window;
+const popup = new Popup('wikiHighlightPopup');
+const button = new Button('wikiHighlightButton', 'show popup', (self) => {
+  self.setVisibility(false);
+  popup.setVisibility(true);
+});
 
 let isExtensionEnabled = true;
 
@@ -15,14 +20,13 @@ function clickHandler(event) {
   const selectedText = getSelection().toString();
 
   if (selectedText.length === 0) {
-    button.changeVisibility(false);
-
+    button.setVisibility(false);
     return;
   }
 
-  popup.changeVisibility(false);
+  popup.setVisibility(false);
   button.setPosition(event.pageX, event.pageY);
-  button.changeVisibility(true);
+  button.setVisibility(true);
 
   fetchData(selectedText)
     .then((data) => {

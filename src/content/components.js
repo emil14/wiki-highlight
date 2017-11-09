@@ -9,7 +9,7 @@ class Element {
     return document.getElementById(this.id);
   }
 
-  changeVisibility(isVisible) {
+  setVisibility(isVisible) {
     this.element.style.display = isVisible ? 'block' : 'none';
   }
 }
@@ -59,11 +59,6 @@ class Button extends Element {
   }
 }
 
-const popup = new Popup('wikiHighlightPopup');
-const button = new Button('wikiHighlightButton', 'show popup', (self) => {
-  self.changeVisibility(false);
-  popup.changeVisibility(true);
-});
 
-export { button, popup };
+export { Button, Popup };
 
