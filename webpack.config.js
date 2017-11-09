@@ -7,6 +7,7 @@ module.exports = {
     content: './src/content/main.js',
     popup: './src/popup/index.js',
   },
+  devtool: 'hidden-source-map',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
