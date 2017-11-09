@@ -18,8 +18,7 @@ function toggleMode() {
   let isEnabled = getStoragedValue();
 
   isEnabled = !isEnabled;
-
-  setStoragedValue(isEnabled);
+  setStoragedValue(isEnabled); // FIXME
 
   chrome.browserAction.setIcon({
     path: isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png',
