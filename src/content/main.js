@@ -2,8 +2,8 @@ import { Button, Popup } from './components';
 import { fetchData, getContentFromData } from './api';
 
 const { chrome, getSelection, addEventListener } = window;
-const popup = new Popup('wikiHighlightPopup');
-const button = new Button('wikiHighlightButton', 'show popup', (self) => {
+const popup = new Popup('wiki-highlight-popup');
+const button = new Button('wiki-highlight-button', 'show popup', (self) => {
   self.setVisibility(false);
   popup.setVisibility(true);
 });

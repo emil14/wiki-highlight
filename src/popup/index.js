@@ -1,5 +1,5 @@
 const { document, chrome, localStorage } = window;
-const switchButton = document.getElementById('switchButton');
+const switchButton = document.getElementById('switch-button');
 const storageKey = 'wk.enabled';
 
 function getStoragedValue() {
