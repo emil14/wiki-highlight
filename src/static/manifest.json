@@ -3,6 +3,10 @@
   "name": "Wiki Highlight",
   "version": "0.0.1",
 
+  "permissions": [
+    "tabs"
+  ],
+
   "description": "A plain text description",
   "icons": {
     "128": "wiki-logo.png"

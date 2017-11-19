@@ -10,9 +10,7 @@ function setStoragedValue(value) {
   localStorage.setItem(storageKey, value);
 }
 
-const storageIsClear = getStoragedValue() === null;
-
-if (storageIsClear) setStoragedValue(true);
+if (getStoragedValue() === null) setStoragedValue(true);
 
 function toggleMode() {
   const isEnabled = getStoragedValue() !== 'true';
