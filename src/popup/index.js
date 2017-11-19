@@ -15,10 +15,9 @@ const storageIsClear = getStoragedValue() === null;
 if (storageIsClear) setStoragedValue(true);
 
 function toggleMode() {
-  let isEnabled = getStoragedValue();
+  const isEnabled = getStoragedValue() !== 'true';
 
-  isEnabled = !isEnabled;
-  setStoragedValue(isEnabled); // FIXME
+  setStoragedValue(isEnabled);
 
   chrome.browserAction.setIcon({
     path: isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png',
