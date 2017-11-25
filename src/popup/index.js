@@ -10,21 +10,22 @@ function setStoragedValue(value) {
   localStorage.setItem(storageKey, value);
 }
 
-if (getStoragedValue() === null) setStoragedValue(true);
+if (getStoragedValue() === null) {
+  setStoragedValue(true);
+}
 
 function toggleMode() {
   const isEnabled = getStoragedValue() !== 'true';
 
   setStoragedValue(isEnabled);
-
   chrome.browserAction.setIcon({
     path: isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png',
   });
-
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, isEnabled);
-  });
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  sendResponse(getStoragedValue() === 'true');
+});
 
 switchButton.addEventListener('click', toggleMode);
 

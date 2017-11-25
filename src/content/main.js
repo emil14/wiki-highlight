@@ -1,21 +1,18 @@
 import { Button, Popup } from './components';
 import { fetchData, getContentFromData } from './api';
 
-const { chrome, getSelection, addEventListener } = window;
+const {
+  chrome, getSelection, addEventListener,
+} = window;
+
 const popup = new Popup('wiki-highlight-popup');
 const button = new Button('wiki-highlight-button', 'show popup', (self) => {
   self.setVisibility(false);
   popup.setVisibility(true);
 });
 
-let isExtensionEnabled = true;
-
-chrome.runtime.onMessage.addListener((request) => {
-  isExtensionEnabled = request;
-});
-
-function clickHandler(event) {
-  if (!isExtensionEnabled) return;
+function handleClick(show, x, y) {
+  if (!show) return;
 
   const selectedText = getSelection().toString();
 
@@ -25,7 +22,7 @@ function clickHandler(event) {
   }
 
   popup.setVisibility(false);
-  button.setPosition(event.pageX, event.pageY);
+  button.setPosition(x, y);
   button.setVisibility(true);
 
   fetchData(selectedText)
@@ -37,4 +34,8 @@ function clickHandler(event) {
     });
 }
 
-addEventListener('click', clickHandler);
+addEventListener('click', (event) => {
+  chrome.runtime.sendMessage('mode', (response) => {
+    handleClick(response, event.pageX, event.pageY);
+  });
+});
