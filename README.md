@@ -1,4 +1,5 @@
 # wiki-highlight
+[![Travis](https://img.shields.io/badge/code%20style-airbnb-red.svg)]()
 
 > description
 
