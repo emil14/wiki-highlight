@@ -1,9 +1,7 @@
 import { Button, Popup } from './components';
 import { fetchData, getContentFromData } from './api';
 
-const {
-  chrome, getSelection, addEventListener,
-} = window;
+const { chrome, getSelection, addEventListener } = window;
 
 const popup = new Popup('wiki-highlight-popup');
 const button = new Button('wiki-highlight-button', 'show popup', (self) => {
@@ -34,8 +32,8 @@ function handleClick(show, x, y) {
     });
 }
 
-addEventListener('click', (event) => {
+addEventListener('click', ({ pageX, pageY }) => {
   chrome.runtime.sendMessage('mode', (response) => {
-    handleClick(response, event.pageX, event.pageY);
+    handleClick(response, pageX, pageY);
   });
 });
