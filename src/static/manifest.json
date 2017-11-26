@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Wiki Highlight",
-  "version": "0.0.1",
+  "version": "0.41.0",
 
   "permissions": [
     "tabs"
