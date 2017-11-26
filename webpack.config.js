@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     content: './src/content/main.js',
     popup: './src/popup/index.js',
+    eventPage: './src/event/eventPage.js',
   },
   devtool: 'hidden-source-map',
   output: {

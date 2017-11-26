@@ -33,7 +33,7 @@ function handleClick(show, x, y) {
 }
 
 addEventListener('click', ({ pageX, pageY }) => {
-  chrome.runtime.sendMessage('mode', (response) => {
+  chrome.runtime.sendMessage('askMode', (response) => {
     handleClick(response, pageX, pageY);
   });
 });
