@@ -1,39 +1,15 @@
-import { Button, Popup } from './components';
-import { fetchData, getContentFromData } from './api';
+const { runtime, storage, browserAction } = chrome;
 
-const { chrome, getSelection, addEventListener } = window;
+document.onselectionchange = () => {
+  console.log(document.getSelection());
+};
 
-const popup = new Popup('wiki-highlight-popup');
-const button = new Button('wiki-highlight-button', 'show popup', (self) => {
-  self.setVisibility(false);
-  popup.setVisibility(true);
-});
+runtime.onMessage.addListener((request, _sender, sendResp) => {
+  if (request.name !== 'toggle') return;
 
-function handleClick(show, x, y) {
-  if (!show) return;
-
-  const selectedText = getSelection().toString();
-
-  if (selectedText.length === 0) {
-    button.setVisibility(false);
-    return;
-  }
-
-  popup.setVisibility(false);
-  button.setPosition(x, y);
-  button.setVisibility(true);
-
-  fetchData(selectedText)
-    .then((data) => {
-      popup.renderContent(getContentFromData(data));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-addEventListener('click', ({ pageX, pageY }) => {
-  chrome.runtime.sendMessage('askMode', (response) => {
-    handleClick(response, pageX, pageY);
+  // FIXME async code doesn't work here
+  storage.sync.get(['isEnabled'], ({ isEnabled }) => {
+    const newVal = !isEnabled;
+    storage.sync.set({ isEnabled: newVal }, () => sendResp({ isEnabled: newVal }));
   });
 });

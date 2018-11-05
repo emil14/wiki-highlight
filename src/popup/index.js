@@ -1,13 +1,15 @@
-const { document, chrome } = window;
-const switchButton = document.getElementById('switch-button');
+'use strict';
 
-function toggleIcon(isEnabled) {
-  chrome.browserAction.setIcon({
-    path: isEnabled ? './wiki-logo.png' : './wiki-logo--disabled.png',
+const sendToggleMessage = () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    const [activeTab] = tabs;
+
+    chrome.tabs.sendMessage(activeTab.id, { name: 'toggle' }, resp => {
+      chrome.browserAction.setBadgeText({ text: resp.isEnabled ? 'ON' : 'OFF' });
+    })
   });
-}
+};
 
-switchButton.addEventListener('click', () => {
-  chrome.runtime.sendMessage('toggleMode', toggleIcon);
-});
+const $button = document.getElementById('button');
+$button.addEventListener('click', sendToggleMessage);
 

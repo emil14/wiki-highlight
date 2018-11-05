@@ -13,4 +13,6 @@ npm run build
 
 # watch for changes
 npm run watch
+# or
+npm start
 ```

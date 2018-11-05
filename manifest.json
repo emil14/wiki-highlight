@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Wiki Highlight",
+  "version": "0.0.1",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "description": "A plain text description",
+  "icons": {
+    "128": "src/static/wiki-logo.png"
+  },
+  "browser_action": {
+    "default_icon": "src/static/wiki-logo.png",
+    "default_popup": "src/popup/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/dist/main.js"]
+    }
+  ]
+}
