@@ -8,10 +8,10 @@
   ],
   "description": "A plain text description",
   "icons": {
-    "128": "src/static/wiki-logo.png"
+    "128": "src/popup/wiki-logo.png"
   },
   "browser_action": {
-    "default_icon": "src/static/wiki-logo.png",
+    "default_icon": "src/popup/wiki-logo.png",
     "default_popup": "src/popup/index.html"
   },
   "content_scripts": [
