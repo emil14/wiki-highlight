@@ -12,4 +12,6 @@ runtime.onMessage.addListener((request, _sender, sendResp) => {
     const newVal = !isEnabled;
     storage.sync.set({ isEnabled: newVal }, () => sendResp({ isEnabled: newVal }));
   });
+
+  return true;
 });
