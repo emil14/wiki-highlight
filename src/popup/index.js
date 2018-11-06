@@ -4,8 +4,8 @@ const { tabs, browserAction } = chrome;
 
 const sendToggleMessage = () => {
   tabs.query({ active: true, currentWindow: true }, ([activeTab]) => {
-    tabs.sendMessage(activeTab.id, { name: 'toggle' }, resp => {
-      browserAction.setBadgeText({ text: resp.isEnabled ? 'ON' : 'OFF' });
+    tabs.sendMessage(activeTab.id, { name: 'toggle' }, ({ isEnabled }) => {
+      browserAction.setBadgeText({ text: isEnabled ? 'ON' : 'OFF' });
     })
   });
 };
