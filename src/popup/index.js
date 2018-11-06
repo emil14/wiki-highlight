@@ -1,9 +1,11 @@
 'use strict';
 
+const { tabs, browserAction } = chrome;
+
 const sendToggleMessage = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, ([activeTab]) => {
-    chrome.tabs.sendMessage(activeTab.id, { name: 'toggle' }, resp => {
-      chrome.browserAction.setBadgeText({ text: resp.isEnabled ? 'ON' : 'OFF' });
+  tabs.query({ active: true, currentWindow: true }, ([activeTab]) => {
+    tabs.sendMessage(activeTab.id, { name: 'toggle' }, ({ isEnabled }) => {
+      browserAction.setBadgeText({ text: isEnabled ? 'ON' : 'OFF' });
     })
   });
 };
