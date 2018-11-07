@@ -9,7 +9,7 @@ const App = () => {
       setSelection(document.getSelection().toString());
     };
 
-    const { runtime, storage, browserAction } = chrome;
+    const { runtime, storage } = chrome;
 
     runtime.onMessage.addListener((request, _sender, sendResp) => {
       if (request.name !== 'toggle') return;
