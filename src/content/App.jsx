@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import fetchWiki from './api';
 
 const App = () => {
   const [selection, setSelection] = useState();
@@ -27,7 +28,14 @@ const App = () => {
     });
   }, []);
 
-  return isEnabled && <div>{selection}</div>;
-}
+  const isPopupVisible = isEnabled && selection.length;
+
+  return isPopupVisible && (
+    <div>
+      <span>{selection}</span>
+      <button onClick={() => fetchWiki(selection)}>search</button>
+    </div>
+  );
+};
 
 export default App;
