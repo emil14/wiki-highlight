@@ -28,9 +28,9 @@ const App = () => {
     });
   }, []);
 
-  const isPopupVisible = isEnabled && selection.length;
+  const isVisible = isEnabled && selection.length;
 
-  return isPopupVisible && (
+  return isVisible && (
     <div>
       <span>{selection}</span>
       <button onClick={() => fetchWiki(selection)}>search</button>
