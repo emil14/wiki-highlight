@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Popup from './components/Popup';
+import App from './App';
 
-ReactDOM.render(React.createElement(Popup), document.createElement('div'));
+const $root = document.createElement('div');
+document.body.appendChild($root);
+
+ReactDOM.render(React.createElement(App), $root);

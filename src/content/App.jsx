@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const css = {
-  position: 'absoulte',
-  left: '20px',
-  top: '20px',
-  zIndex: 9999,
-  width: '250px',
-  height: '250px',
-  background: 'green',
-};
-
-const Popup = () => {
+const App = () => {
   const [selection, setSelection] = useState();
   const [isEnabled, setIsEnabled] = useState();
 
@@ -37,7 +27,7 @@ const Popup = () => {
     });
   }, []);
 
-  return <div style={css}>{selection}</div>;
+  return isEnabled && <div>{selection}</div>;
 }
 
-export default Popup;
+export default App;
